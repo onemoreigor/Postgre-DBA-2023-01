@@ -33,8 +33,11 @@ insert into persons(first_name, second_name) values('sergey', 'sergeev');
 ```sh 
 select * from persons;
 ``` 
-
+|  |  |
+| ------ | ------ |
 |  Видите ли вы новую запись и если да то почему? |  Нет, потому что autocommit выключен и транзакция ещё не завершена. |
+|  |  |
+
 
 
 Завершить первую транзакцию
