@@ -12,7 +12,7 @@
 
 Выключить auto commit
 ```sh
-\SET AUTOCOMMIT OFF
+\set AUTOCOMMIT off
 ```
 
 Сделать в первой сессии новую таблицу и наполнить ее данными 
@@ -24,6 +24,10 @@ create table persons(id serial, first_name text, second_name text); insert into 
 show transaction isolation level;
 ```
 Начать новую транзакцию в обоих сессиях с дефолтным (не меняя) уровнем изоляции
+
+```sh
+Begin;
+```
 
 В первой сессии добавить новую запись 
 ```sh
@@ -53,11 +57,19 @@ select * from persons;
 
 
 Завершите транзакцию во второй сессии
+```sh
+End;
+```
 
 Начать новые но уже repeatable read транзации - 
 ```sh
 set transaction isolation level repeatable read;
 ```
+
+```sh
+Begin;
+```
+
 В первой сессии добавить новую запись 
 ```sh
 insert into persons(first_name, second_name) values('sveta', 'svetova');
@@ -86,6 +98,10 @@ select * from persons;
 
 Завершить вторую транзакцию
 
+```sh
+End;
+```
+
 Сделать во второй сессии 
 ```sh
 select * from persons;
@@ -97,4 +113,4 @@ select * from persons;
 
 
 
-ДЗ сдаем в виде миниотчета в markdown в гите
+### ДЗ сдаем в виде миниотчета в markdown в гите
