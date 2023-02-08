@@ -61,7 +61,7 @@ select * from persons;
 End;
 ```
 
-Начать новые но уже repeatable read транзации - 
+Начать новые но уже repeatable read транзации (**Транзакция начнётся автоматически**)
 ```sh
 set transaction isolation level repeatable read;
 ```
