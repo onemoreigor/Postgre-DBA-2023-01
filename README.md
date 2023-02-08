@@ -66,10 +66,6 @@ End;
 set transaction isolation level repeatable read;
 ```
 
-```sh
-Begin;
-```
-
 В первой сессии добавить новую запись 
 ```sh
 insert into persons(first_name, second_name) values('sveta', 'svetova');
