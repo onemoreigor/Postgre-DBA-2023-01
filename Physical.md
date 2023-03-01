@@ -13,8 +13,8 @@
 Необходимо поменять data_directory в файле /etc/postgresql/14/main/postgresql.conf
 
 ```
-попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
-напишите получилось или нет и почему
+Попытайтесь запустить кластер.
+Напишите получилось или нет и почему.
 ```sh
 ubuntu@ubuntu:~$ sudo -u postgres pg_ctlcluster 14 main start
 Warning: the cluster will not be running as a systemd service. Consider using systemctl:
