@@ -1,7 +1,10 @@
 # Postgre-DBA-2023-01
 2 зайдите в созданный кластер под пользователем postgres
+
 3 создайте новую базу данных testdb
+
 4 зайдите в созданную базу данных под пользователем postgres
+
 5 создайте новую схему testnm
 ```sh
 ubuntu@ubuntu:~$ sudo -u postgres psql
@@ -50,7 +53,9 @@ testdb=# \du
 ```
 
 9 дайте новой роли право на подключение к базе данных testdb
+
 10 дайте новой роли право на использование схемы testnm
+
 11 дайте новой роли право на select для всех таблиц схемы testnm
 ```sh
 testdb=# grant connect on database testdb to readonly;
