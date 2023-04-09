@@ -6,7 +6,7 @@ log_lock_waits = on
 deadlock_timeout = 200ms
 ``` 
   Воспроизведите ситуацию, при которой в журнале появятся такие сообщения.
-```sh
+  
 Первая сессия
 ```sh
 postgres=# create database homework;
@@ -33,7 +33,6 @@ homework=*# CREATE INDEX ON accounts(acc_no);
 2023-04-09 08:33:48.021 UTC [3465] postgres@homework STATEMENT:  CREATE INDEX ON accounts(acc_no);
 2023-04-09 08:37:22.448 UTC [3465] postgres@homework LOG:  process 3465 acquired ShareLock on relation 16389 of database 16388 after 214628.165 ms
 2023-04-09 08:37:22.448 UTC [3465] postgres@homework STATEMENT:  CREATE INDEX ON accounts(acc_no);
-```
 ```
 
 2.Смоделируйте ситуацию обновления одной и той же строки тремя командами UPDATE в разных сеансах. 
