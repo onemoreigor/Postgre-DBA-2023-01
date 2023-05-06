@@ -40,8 +40,9 @@ CREATE TABLE reservation.boarding_passes_p_d PARTITION OF reservation.boarding_p
 insert into boarding_passes_p select * from reservation.boarding_passes;
 ```
 Проверка
+
+Запрос по оригинальной таблице
 ```sh
--- Запрос по оригинальной таблице
 explain analyze 
 select * from boarding_passes bpp
 where flight_id > 11000 and flight_id < 22000
@@ -50,9 +51,10 @@ Index Scan using boarding_passes_flight_id_seat_no_key on boarding_passes bpp  (
   Index Cond: ((flight_id > 11000) AND (flight_id < 22000))
 Planning Time: 0.081 ms
 Execution Time: 101.005 ms
+```
 
-
--- Запрос по секционированной таблице
+Запрос по секционированной таблице
+```sh
 explain analyze
 select * from boarding_passes_p bppd
 where flight_id > 11000 and flight_id < 22000
