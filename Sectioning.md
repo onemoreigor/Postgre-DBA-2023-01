@@ -47,10 +47,11 @@ explain analyze
 select * from boarding_passes bpp
 where flight_id > 11000 and flight_id < 22000
 
-Index Scan using boarding_passes_flight_id_seat_no_key on boarding_passes bpp  (cost=0.43..24717.46 rows=408298 width=25) (actual time=0.019..85.469 rows=411363 loops=1)
-  Index Cond: ((flight_id > 11000) AND (flight_id < 22000))
-Planning Time: 0.081 ms
-Execution Time: 101.005 ms
+Index Scan using boarding_passes_flight_id_seat_no_key on boarding_passes bpp  (cost=0.42..8105.94 rows=148688 width=25) (actual time=0.033..36.193 rows=148050 loops=1)
+   Index Cond: ((flight_id > 11000) AND (flight_id < 22000))
+ Planning Time: 0.112 ms
+ Execution Time: 42.988 ms
+(4 rows)
 ```
 
 Запрос по секционированной таблице
@@ -59,15 +60,17 @@ explain analyze
 select * from boarding_passes_p bppd
 where flight_id > 11000 and flight_id < 22000
 
-Append  (cost=0.42..14932.12 rows=412336 width=25) (actual time=0.019..100.525 rows=411363 loops=1)
-  ->  Index Scan using boarding_passes_p_2_flight_id_boarding_no_key on boarding_passes_p_2 bppd_1  (cost=0.42..5199.46 rows=132301 width=25) (actual time=0.019..25.815 rows=132366 loops=1)
-        Index Cond: ((flight_id > 11000) AND (flight_id < 22000))
-  ->  Seq Scan on boarding_passes_p_3 bppd_2  (cost=0.00..4743.49 rows=212166 width=25) (actual time=0.014..26.948 rows=212166 loops=1)
-        Filter: ((flight_id > 11000) AND (flight_id < 22000))
-  ->  Index Scan using boarding_passes_p_4_flight_id_seat_no_key on boarding_passes_p_4 bppd_3  (cost=0.42..2927.49 rows=67869 width=25) (actual time=0.023..15.298 rows=66831 loops=1)
-        Index Cond: ((flight_id > 11000) AND (flight_id < 22000))
-Planning Time: 0.254 ms
-Execution Time: 116.014 ms
+Append  (cost=0.00..5040.03 rows=148423 width=25) (actual time=0.009..33.831 rows=148050 loops=1)
+   ->  Seq Scan on boarding_passes_p_2 bppd_1  (cost=0.00..2018.48 rows=71546 width=25) (actual time=0.009..13.625 rows=71244 loops=1)
+         Filter: ((flight_id > 11000) AND (flight_id < 22000))
+         Rows Removed by Filter: 19055
+   ->  Seq Scan on boarding_passes_p_3 bppd_2  (cost=0.00..1049.96 rows=46931 width=25) (actual time=0.011..4.945 rows=46931 loops=1)
+         Filter: ((flight_id > 11000) AND (flight_id < 22000))
+   ->  Index Scan using boarding_passes_p_4_flight_id_boarding_no_key on boarding_passes_p_4 bppd_3  (cost=0.29..1229.47 rows=29946 width=25) (actual time=0.023..4.766 rows=29875 loops=1)
+         Index Cond: ((flight_id > 11000) AND (flight_id < 22000))
+ Planning Time: 1.055 ms
+ Execution Time: 39.269 ms
+(10 rows)
 ```
 
 Преимущества в данном случае не заметил. Судя по времени выполнения запроса, секционирование проигрывает в скорости.
