@@ -3,7 +3,7 @@
 Создадим таблицу с секциями, взяв за основу boarding_passes
 
 ```sh
-CREATE TABLE reservation.boarding_passes_p (
+CREATE TABLE bookings.boarding_passes_p (
 	ticket_no bpchar(13) NOT NULL,
 	flight_id int4 NOT NULL,
 	boarding_no int4 NOT NULL,
@@ -16,28 +16,28 @@ CREATE TABLE reservation.boarding_passes_p (
 ```
 Создадим одну секцию на каждые 5000 рейсов
 ```sh
-CREATE TABLE reservation.boarding_passes_p_0 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (0) TO (5000);
-CREATE TABLE reservation.boarding_passes_p_1 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (5000) TO (10000);
-CREATE TABLE reservation.boarding_passes_p_2 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (10000) TO (15000);
-CREATE TABLE reservation.boarding_passes_p_3 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (15000) TO (20000);
-CREATE TABLE reservation.boarding_passes_p_4 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (20000) TO (25000);
-CREATE TABLE reservation.boarding_passes_p_5 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (25000) TO (30000);
-CREATE TABLE reservation.boarding_passes_p_6 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (30000) TO (35000);
-CREATE TABLE reservation.boarding_passes_p_7 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (35000) TO (40000);
-CREATE TABLE reservation.boarding_passes_p_8 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (40000) TO (45000);
-CREATE TABLE reservation.boarding_passes_p_9 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (45000) TO (50000);
-CREATE TABLE reservation.boarding_passes_p_10 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (50000) TO (55000);
-CREATE TABLE reservation.boarding_passes_p_11 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (55000) TO (60000);
-CREATE TABLE reservation.boarding_passes_p_12 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (60000) TO (65000);
-CREATE TABLE reservation.boarding_passes_p_13 PARTITION OF reservation.boarding_passes_p FOR VALUES FROM (65000) TO (70000);
+CREATE TABLE bookings.boarding_passes_p_0 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (0) TO (5000);
+CREATE TABLE bookings.boarding_passes_p_1 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (5000) TO (10000);
+CREATE TABLE bookings.boarding_passes_p_2 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (10000) TO (15000);
+CREATE TABLE bookings.boarding_passes_p_3 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (15000) TO (20000);
+CREATE TABLE bookings.boarding_passes_p_4 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (20000) TO (25000);
+CREATE TABLE bookings.boarding_passes_p_5 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (25000) TO (30000);
+CREATE TABLE bookings.boarding_passes_p_6 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (30000) TO (35000);
+CREATE TABLE bookings.boarding_passes_p_7 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (35000) TO (40000);
+CREATE TABLE bookings.boarding_passes_p_8 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (40000) TO (45000);
+CREATE TABLE bookings.boarding_passes_p_9 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (45000) TO (50000);
+CREATE TABLE bookings.boarding_passes_p_10 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (50000) TO (55000);
+CREATE TABLE bookings.boarding_passes_p_11 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (55000) TO (60000);
+CREATE TABLE bookings.boarding_passes_p_12 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (60000) TO (65000);
+CREATE TABLE bookings.boarding_passes_p_13 PARTITION OF bookings.boarding_passes_p FOR VALUES FROM (65000) TO (70000);
 ```
 Также добавим default секцию, чтобы не терять данные, если какую-то секцию не учли
 ```sh
-CREATE TABLE reservation.boarding_passes_p_d PARTITION OF reservation.boarding_passes_p DEFAULT;
+CREATE TABLE bookings.boarding_passes_p_d PARTITION OF bookings.boarding_passes_p DEFAULT;
 ```
 Заполним созданную таблицу данными из существующей
 ```sh
-insert into boarding_passes_p select * from reservation.boarding_passes;
+insert into boarding_passes_p select * from bookings.boarding_passes;
 ```
 Проверка
 
