@@ -1,6 +1,7 @@
 # Postgre-DBA-2023-01
 
 Прямое соединение
+
 Выводит город,аэропорт и количество вылетов
 ```sh
 select city,
@@ -13,6 +14,7 @@ group by city,
     airport_name;
 ```
 Левосторонне соединение
+
 Кол-во вылетов из аэропорта за всё время
 ```sh
 select airport_name,
@@ -23,6 +25,7 @@ group by 1
 order by 2 desc;
 ```
 Кросс соединение таблиц
+
 Показывает куда можно улететь из каждого аэропорта
 ```sh
 select a.airport_name,
@@ -32,6 +35,7 @@ from airports_data a
 where a.airport_code <> a2.airport_code;
 ```
 Полное соединение
+
 Показывает сколько мест в конкретной модели самолёта
 ```sh
 select a.model,
