@@ -194,11 +194,7 @@ psql (15.2 (Ubuntu 15.2-1.pgdg20.04+1))
 Type "help" for help.
 
 postgres=# create table qwe (c int);
-ert into qwe values (1),(2),(3),(4),(5);
- SELECT pg_relCREATE TABLE
-postgres=#  insert into qwe values (1),(2),(3),(4),(5);
-ation_filepath('qwe');INSERT 0 5
-
+insert into qwe values (1),(2),(3),(4),(5);
 ```
 Найдём файл, в котором хранится таблица
 
